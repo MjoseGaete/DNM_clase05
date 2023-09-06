@@ -74,6 +74,10 @@
                 color: rgba(250, 0, 0, 0.9);
             }
 
+            section article.ia {
+                color: rgba(230, 50, 0, 0.9);
+            }
+
             section article.jp {
                 color: rgba(250, 0, 70, 0.9);
             }
@@ -143,6 +147,7 @@
         <select name="select" id="opciones">
             <option>All</option>
             <option value="Chile">Chile</option>
+            <option value="India">India</option>
             <option value="Indonesia">Indonesia</option>
             <option value="Japan">Japan</option>
             <option value="Mexico">Mexico</option>
@@ -164,7 +169,7 @@
                     data.features.forEach(function (t, i) {
                         var articuloTipo;
                         //par de alternativas para la variable articuloTipo
-                        if (t.properties.place.includes("Indonesia")) { articuloTipo = '<article class="in">'; } else if (t.properties.place.includes("Chile")) { articuloTipo = '<article class="cl">'; } else if (t.properties.place.includes("Japan")) { articuloTipo = '<article class="jp">'; } else if (t.properties.place.includes("Philippines")) { articuloTipo = '<article class="ph">'; } else if (t.properties.place.includes("Mexico")) { articuloTipo = '<article class="mx">'; }  else { articuloTipo = '<article class="etc">';}
+                        if (t.properties.place.includes("Indonesia")) { articuloTipo = '<article class="in">'; } else if (t.properties.place.includes("Chile")) { articuloTipo = '<article class="cl">'; } else if (t.properties.place.includes("India")) { articuloTipo = '<article class="ia">'; }  else if (t.properties.place.includes("Japan")) { articuloTipo = '<article class="jp">'; } else if (t.properties.place.includes("Philippines")) { articuloTipo = '<article class="ph">'; } else if (t.properties.place.includes("Mexico")) { articuloTipo = '<article class="mx">'; }  else { articuloTipo = '<article class="etc">';}
                         //aplicación del articuloTipo y la pequeña función
                         $("section").append(`${articuloTipo}<h3>${t.properties.mag.toFixed(1)}</h3><p>${t.properties.place}</p><p><a href="${t.properties.url}" target="_blank" rel="noopener noreferrer">${registro(t.properties.time)}</a></p></article>`);
                     });
@@ -174,21 +179,24 @@
                         valor = $("select").val();
                         if (valor == "Indonesia") {
                             $(".in").show()
-                            $(".etc, .cl, .jp, .ph, .mx").hide();
+                            $(".etc, .cl, .jp, .ph, .mx, .ia").hide();
                         } else if (valor== "Chile") {
                             $(".cl").show()
-                            $(".etc, .in, .jp, .ph, .mx").hide();
+                            $(".etc, .in, .jp, .ph, .mx, .ia").hide();
+                        } else if (valor== "India") {
+                            $(".ia").show()
+                            $(".etc, .in, .jp, .ph, .mx, .cl").hide();
                         } else if (valor== "Japan") {
                             $(".jp").show()
-                            $(".etc, .in, .cl, .ph, .mx").hide();
+                            $(".etc, .in, .cl, .ph, .mx, .ia").hide();
                         } else if (valor== "Mexico") {
                             $(".mx").show()
-                            $(".etc, .in, .cl, .jp, .ph").hide();
+                            $(".etc, .in, .cl, .jp, .ph, .ia").hide();
                         } else if (valor== "Philippines") {
                             $(".ph").show()
-                            $(".etc, .in, .cl, .jp, .mx").hide();
+                            $(".etc, .in, .cl, .jp, .mx, .ia").hide();
                         } else {
-                            $(".cl, .etc, .in, .jp, .ph, .mx").show();
+                            $(".cl, .etc, .in, .jp, .ph, .mx, .ia").show();
                         }
                     });
                 }); // cierro $.getJSON((){});
